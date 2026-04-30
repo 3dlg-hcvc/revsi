@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReVSI</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <meta name="description" content="ReVSI: Rebuilding Visual Spatial Intelligence Evaluation for Accurate Assessment of VLM 3D Reasoning.">
+  <meta name="robots" content="max-image-preview:large">
+  <meta property="og:title" content="ReVSI">
+  <meta property="og:description" content="ReVSI: Rebuilding Visual Spatial Intelligence Evaluation for Accurate Assessment of VLM 3D Reasoning.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://3dlg-hcvc.github.io/revsi/static/title.png">
+  <meta property="og:image:width" content="1469">
+  <meta property="og:image:height" content="376">
+  <meta property="og:image:alt" content="ReVSI">
+  <meta name="google-site-verification" content="yX86dszakvKQEZdQjtoIpMNdPdU0ucJRLULrIavsf7g" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="./assets/index-CPJoTQod.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/three-BW4OLmiP.js">
+  <link rel="stylesheet" crossorigin href="./assets/index-BUa5GTR-.css">
+</head>
+<body>
+
+<!-- ════════════════════ Sticky Top Bar ════════════════════ -->
+<div id="sticky-nav" class="sticky-nav">
+  <div class="sticky-nav-inner">
+    <img src="static/title.png" alt="ReVSI" class="sticky-nav-logo">
+    <div class="sticky-nav-links">
+      <a href="https://arxiv.org/abs/2604.24300" target="_blank" rel="noopener" class="sticky-nav-btn sticky-nav-btn-primary"><i class="fa-regular fa-file"></i> Paper</a>
+      <a href="https://github.com/3dlg-hcvc/revsi" target="_blank" rel="noopener" class="sticky-nav-btn"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://huggingface.co/datasets/3dlg-hcvc/ReVSI" target="_blank" rel="noopener" class="sticky-nav-btn"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HF" class="h-3.5"> HuggingFace</a>
+      <a href="https://revsi.site/" target="_blank" rel="noopener" class="sticky-nav-btn"><i class="fa-solid fa-eye"></i> Visualizer</a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ Hero ════════════════════ -->
+<div class="hero">
+  <div class="relative z-[2] w-full max-w-content mx-auto px-10 md:px-10 max-md:px-5">
+    <div class="hero-inner max-w-[580px] max-md:max-w-full">
+      <h1 class="text-6xl max-md:text-4xl font-extrabold text-primary italic leading-none mb-3 tracking-tight" style="text-shadow: 0 1px 8px rgba(255,255,255,0.6);">
+        <img src="static/title.png" alt="ReVSI" class="h-[1.2em] align-baseline">
+      </h1>
+      <p class="text-[19px] max-md:text-[17px] font-medium text-gray-600 leading-relaxed mb-8">
+        Rebuilding Visual Spatial Intelligence Evaluation
+        for Accurate Assessment of VLM 3D Reasoning
+      </p>
+
+      <div class="flex flex-col gap-3 mb-8">
+        <p class="text-[0.95rem] text-muted leading-relaxed m-0">
+          <a href="https://github.com/eamonn-zh" target="_blank" class="text-muted no-underline hover:text-primary transition-colors">Yiming Zhang</a><sup>1*</sup>,
+          <a href="https://jcchen.me/" target="_blank" class="text-muted no-underline hover:text-primary transition-colors">Jiacheng Chen</a><sup>1*</sup>,
+          <a href="https://christinatan0704.github.io/mysite/" target="_blank" class="text-muted no-underline hover:text-primary transition-colors">Jiaqi Tan</a><sup>1</sup>,
+          <a href="https://sammaoys.github.io/" target="_blank" class="text-muted no-underline hover:text-primary transition-colors">Yongsen Mao</a><sup>2</sup>,
+          <br class="max-sm:hidden">
+          <a href="https://wenhuchen.github.io/" target="_blank" class="text-muted no-underline hover:text-primary transition-colors">Wenhu Chen</a><sup>3</sup>,
+          <a href="https://angelxuanchang.github.io/" target="_blank" class="text-muted no-underline hover:text-primary transition-colors">Angel X. Chang</a><sup>1,4</sup>
+        </p>
+        <p class="text-xs text-light m-0">* Equal contribution</p>
+        <p class="affiliations text-sm text-gray-500 m-0 leading-relaxed">
+          <span class="affil"><sup>1</sup><a href="https://www.sfu.ca/" target="_blank" class="text-gray-500 no-underline hover:text-primary transition-colors">Simon Fraser University</a></span><span class="affil-sep">&nbsp;&nbsp;</span><span class="affil"><sup>2</sup><a href="https://hkust.edu.hk/" target="_blank" class="text-gray-500 no-underline hover:text-primary transition-colors">Hong Kong University of Science and Technology</a></span><span class="affil-sep">&nbsp;&nbsp;</span><br class="affil-br">
+          <span class="affil"><sup>3</sup><a href="https://uwaterloo.ca/" target="_blank" class="text-gray-500 no-underline hover:text-primary transition-colors">University of Waterloo</a></span><span class="affil-sep">&nbsp;&nbsp;</span><span class="affil"><sup>4</sup><a href="https://www.amii.ca/" target="_blank" class="text-gray-500 no-underline hover:text-primary transition-colors">Alberta Machine Intelligence Institute (Amii)</a></span>
+        </p>
+      </div>
+
+      <div class="link-buttons flex flex-wrap gap-2.5">
+        <a href="https://arxiv.org/abs/2604.24300" target="_blank" rel="noopener" class="btn-primary"><i class="fa-regular fa-file"></i> Paper</a>
+        <a href="https://github.com/3dlg-hcvc/revsi" target="_blank" rel="noopener" class="btn-outline"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="https://huggingface.co/datasets/3dlg-hcvc/ReVSI" target="_blank" rel="noopener" class="btn-outline"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="HF" class="h-4"> HuggingFace</a>
+        <a href="https://revsi.site/" target="_blank" rel="noopener" class="btn-outline"><i class="fa-solid fa-eye"></i> Visualizer</a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="section-divider">
+
+<!-- ════════════════════ Content ════════════════════ -->
+<div class="max-w-content mx-auto px-10 max-md:px-5">
+
+  <!-- Rethinking VSI-Bench -->
+  <section id="abstract" class="pt-20 pb-8 max-md:pt-12 max-md:pb-6" data-animate>
+    <div class="mb-14 max-md:mb-10 relative">
+      <!-- Headline + lede in two columns on desktop -->
+      <div class="grid grid-cols-12 gap-x-10 gap-y-6 items-center">
+        <h2 class="col-span-12 lg:col-span-6 text-[2.75rem] max-md:text-[2rem] max-sm:text-[1.15rem] font-extrabold tracking-tight leading-[1.05] m-0" style="letter-spacing: -0.03em; color: #4a4a52;">
+          Validity Pitfalls in
+          <span class="relative inline-block">
+            <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="italic no-underline relative z-[1] hover:opacity-90 transition-opacity" style="color: #4a4a52;">VSI-Bench</a>
+            <span aria-hidden="true" class="absolute left-0 right-0 bottom-1 h-[10px] rounded-sm -z-0" style="background: rgba(255, 235, 159, 0.7);"></span>
+          </span>
+        </h2>
+
+        <div class="col-span-12 lg:col-span-6 relative lg:flex lg:justify-end min-w-0">
+          <div class="relative lg:max-w-[92%]">
+            <span aria-hidden="true" class="hidden lg:block absolute left-0 top-3 bottom-1 w-[3px] rounded-full bg-gradient-to-b from-primary via-primary/40 to-transparent"></span>
+            <p class="text-[17.5px] max-md:text-[16px] text-muted leading-[1.75] m-0 lg:pl-6 break-words">
+            The prior spatial intelligence benchmark <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="link-muted">VSI-Bench</a> becomes systematically unreliable under modern vision-language model settings. We highlight two key pitfalls below.
+          </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <div class="bg-white border border-border rounded-2xl overflow-hidden relative" style="box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);">
+        <div class="flex max-md:flex-col">
+          <!-- Left: description panel -->
+          <div class="pitfall-panel flex-[3] relative p-10 max-md:p-7 flex flex-col justify-center text-white" style="background: #8BBBB4;">
+            <div class="mb-5 flex items-center gap-3">
+              <span class="inline-flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-full text-[14px] font-bold uppercase tracking-[0.22em] text-white" style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(6px);">
+                <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                Pitfall 1
+              </span>
+            </div>
+            <h3 class="text-[30px] max-md:text-[24px] font-extrabold text-white leading-[1.15] tracking-tight m-0 mb-5">
+              3D Annotation-to-Video Drift
+            </h3>
+            <p class="text-[18px] max-md:text-[17px] leading-[1.75] m-0 relative z-10" style="color: rgba(255,255,255,0.9);">
+              <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="text-white no-underline hover:underline decoration-white/60 underline-offset-2 transition-colors">VSI-Bench</a> derives ground-truth answers for question-answer pairs from low-quality 3D reconstructions and noisy annotations in scene datasets (e.g., ScanNet v2, ScanNet++ v2, ARKitScenes), leading to a substantial portion of incorrect ground-truth answers across tasks.
+            </p>
+          </div>
+          <!-- Right: chart panel -->
+          <div class="flex-[5] p-6 border-l border-border max-md:border-l-0 max-md:border-t flex flex-col">
+            <div class="mb-5 pb-3 border-b border-border/70">
+              <div class="flex items-center gap-2">
+                <span class="inline-block w-1 h-4 rounded-sm bg-primary/80"></span>
+                <p class="text-[17px] font-semibold text-primary m-0 leading-tight tracking-tight">VSI-Bench Ground-Truth Quality</p>
+              </div>
+              <p class="text-[15px] text-light font-medium m-0 mt-1.5 ml-3">Diagnostics on object counting and object size tasks</p>
+            </div>
+            <div class="grid grid-cols-2 max-md:grid-cols-1 gap-4">
+              <!-- Donut: Object Counting -->
+              <div class="flex flex-col items-center justify-between p-5 rounded-xl bg-[#f8fafa] border border-border/80 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+                <p class="text-[11.5px] font-bold uppercase tracking-[0.12em] text-muted text-center m-0 mb-3">GT Correctness · Object Counting</p>
+                <div class="w-full flex items-center justify-center gap-3" style="height: 150px;">
+                  <div class="relative h-full" style="width: 150px;">
+                    <canvas id="pitfall1-count"></canvas>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-150" id="pitfall1-count-label">
+                      <span class="text-[22px] font-extrabold leading-none tracking-tight tabular-nums" style="color: #4a4a52;">565</span>
+                      <span class="text-[9px] font-semibold uppercase tracking-[0.14em] text-light mt-1.5 text-center leading-[1.25]">total<br>questions</span>
+                    </div>
+                  </div>
+                  <ul class="flex flex-col gap-1.5 text-[11px] font-medium text-muted m-0 p-0 list-none shrink-0">
+                    <li class="flex items-center gap-1.5"><span class="inline-block w-2.5 h-2.5 rounded-sm" style="background:#8BBBB4;"></span>Correct</li>
+                    <li class="flex items-center gap-1.5"><span class="inline-block w-2.5 h-2.5 rounded-sm" style="background:#F87171;"></span>Wrong</li>
+                    <li class="flex items-center gap-1.5"><span class="inline-block w-2.5 h-2.5 rounded-sm" style="background:#FCECA8;"></span>Ambiguous</li>
+                  </ul>
+                </div>
+                <p class="text-[11.5px] text-light italic text-center mt-3 m-0 leading-[1.5]">Object counting shows notable incorrectness and ambiguity (e.g., ill-defined object criteria like shoes).</p>
+              </div>
+              <!-- Bar: Door height -->
+              <div class="flex flex-col justify-center p-5 rounded-xl bg-[#f8fafa] border border-border/80 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+                <p class="text-[11.5px] font-bold uppercase tracking-[0.12em] text-muted text-center m-0 mb-3">&ldquo;Door&rdquo; Height Distribution <span class="text-light font-semibold">(cm)</span></p>
+                <div style="height: 150px;">
+                  <canvas id="pitfall1-door"></canvas>
+                </div>
+                <p class="text-[11.5px] text-light italic text-center mt-3 m-0 leading-[1.5]">Door height distributions as proxies show systematic obj. size errors. Red bins denote physically implausible sizes.</p>
+              </div>
+            </div>
+            <p class="text-[12.5px] text-light mt-4 italic text-center m-0">Statistics are derived from human annotations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-card" data-scene="scene0196_00">
+      <div class="scene-header">
+        <a href="https://vsibench.revsi.site/?dataset=ScanNetv2&scene=scene0196_00" target="_blank" class="scene-badge hover:underline">Example 1</a>
+        <a href="https://vsibench.revsi.site/?dataset=ScanNetv2&scene=scene0196_00" target="_blank" class="scene-label hover:underline">scene0196_00</a>
+        <span class="scene-source">ScanNet v2</span>
+        <a href="https://vsibench.revsi.site/" target="_blank" class="ml-auto max-sm:hidden inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full text-muted hover:text-primary transition-colors no-underline">
+          Explore More <span class="normal-case tracking-normal">VSI-Bench</span> Data
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+      <div class="scene-media">
+        <div class="pcd-viewer relative" id="pcd-viewer-1">
+          <span class="viewer-label">3D Reconstructed Mesh</span>
+          <button type="button" class="bbox-toggle" data-state="on" aria-label="Toggle VSI-Bench annotations" aria-pressed="true">
+            <span class="bbox-toggle-dot w-1.5 h-1.5 rounded-full bg-red-500"></span>
+            <span><span class="normal-case font-bold tracking-normal">VSI-Bench</span> Annotations</span>
+            <span class="bbox-toggle-state text-red-500">ON</span>
+          </button>
+          <button type="button" data-pcd-expand class="absolute bottom-2 right-2 z-10 w-7 h-7 inline-flex items-center justify-center rounded-md bg-white/95 border border-gray-200 text-gray-700 hover:bg-white shadow-sm" aria-label="Expand mesh view" title="Expand">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+          </button>
+        </div>
+        <div class="relative rounded-xl overflow-hidden border border-border bg-black flex-1">
+          <video class="w-full h-auto" controls autoplay loop muted playsinline preload="none">
+            <source src="static/scene0196_00/scene0196_00.webm" type="video/webm">
+          </video>
+          <span class="viewer-label">Raw Video</span>
+        </div>
+      </div>
+      <div class="scene-qa-section">
+        <p class="scene-qa-label">VSI-Bench QA Pairs</p>
+        <div class="qa-grid">
+          <div class="qa-item selected" data-qa-index="0">
+            <p class="qa-question">How many chair(s) are in this room?</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">23</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">27</span></div>
+            </div>
+          </div>
+          <div class="qa-item" data-qa-index="1">
+            <p class="qa-question">How many table(s) are in this room?</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">5</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">8</span></div>
+            </div>
+          </div>
+          <div class="qa-item" data-qa-index="2">
+            <p class="qa-question">What is the length of the longest dimension (length, width, or height) of the door, measured in centimeters?</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">151</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">> 195</span></div>
+            </div>
+          </div>
+          <div class="qa-item" data-qa-index="3">
+            <p class="qa-question">What is the size of this room (in square meters)? If multiple rooms are shown, estimate the size of the combined space.</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">24.9</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">40.0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-card max-sm:hidden" data-scene="scene0088_01">
+      <div class="scene-header">
+        <a href="https://vsibench.revsi.site/?dataset=ScanNetv2&scene=scene0088_01" target="_blank" class="scene-badge hover:underline">Example 2</a>
+        <a href="https://vsibench.revsi.site/?dataset=ScanNetv2&scene=scene0088_01" target="_blank" class="scene-label hover:underline">scene0088_01</a>
+        <span class="scene-source">ScanNet v2</span>
+        <a href="https://vsibench.revsi.site/" target="_blank" class="ml-auto max-sm:hidden inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full text-muted hover:text-primary transition-colors no-underline">
+          Explore More <span class="normal-case tracking-normal">VSI-Bench</span> Data
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+      <div class="scene-media">
+        <div class="pcd-viewer relative" id="pcd-viewer-2">
+          <span class="viewer-label">3D Reconstructed Mesh</span>
+          <button type="button" class="bbox-toggle" data-state="on" aria-label="Toggle VSI-Bench annotations" aria-pressed="true">
+            <span class="bbox-toggle-dot w-1.5 h-1.5 rounded-full bg-red-500"></span>
+            <span><span class="normal-case font-bold tracking-normal">VSI-Bench</span> Annotations</span>
+            <span class="bbox-toggle-state text-red-500">ON</span>
+          </button>
+          <button type="button" data-pcd-expand class="absolute bottom-2 right-2 z-10 w-7 h-7 inline-flex items-center justify-center rounded-md bg-white/95 border border-gray-200 text-gray-700 hover:bg-white shadow-sm" aria-label="Expand mesh view" title="Expand">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+          </button>
+        </div>
+        <div class="relative rounded-xl overflow-hidden border border-border bg-black flex-1">
+          <video class="w-full h-auto" controls autoplay loop muted playsinline preload="none">
+            <source src="static/scene0088_01/scene0088_01.webm" type="video/webm">
+          </video>
+          <span class="viewer-label">Raw Video</span>
+        </div>
+      </div>
+      <div class="scene-qa-section">
+        <p class="scene-qa-label">VSI-Bench QA Pairs</p>
+        <div class="qa-grid">
+          <div class="qa-item selected" data-qa-index="0">
+            <p class="qa-question">How many chair(s) are in this room?</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">18</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">28</span></div>
+            </div>
+          </div>
+          <div class="qa-item" data-qa-index="1">
+            <p class="qa-question">What is the length of the longest dimension (length, width, or height) of the door, measured in centimeters?</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">148</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">> 195</span></div>
+            </div>
+          </div>
+          <div class="qa-item" data-qa-index="2">
+            <p class="qa-question">What is the size of this room (in square meters)? If multiple rooms are shown, estimate the size of the combined space.</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">18.7</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">29.2</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 mb-6">
+      <div class="bg-white border border-border rounded-2xl overflow-hidden relative" style="box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);">
+        <div class="flex max-md:flex-col">
+          <!-- Left: description panel -->
+          <div class="pitfall-panel flex-[2] relative p-10 max-md:p-7 flex flex-col justify-center text-white" style="background: #8BBBB4;">
+            <div class="mb-5 flex items-center gap-3">
+              <span class="inline-flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-full text-[14px] font-bold uppercase tracking-[0.22em] text-white" style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(6px);">
+                <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                Pitfall 2
+              </span>
+            </div>
+            <h3 class="text-[30px] max-md:text-[24px] font-extrabold text-white leading-[1.15] tracking-tight m-0 mb-5">
+              Video Sampling Matters!
+            </h3>
+            <p class="text-[18px] max-md:text-[17px] leading-[1.75] text-justify m-0 relative z-10" style="color: rgba(255,255,255,0.9);">
+              Prior evaluations assume full-scene access, whereas most vision-language models operate on sparsely sampled frames (e.g., 16–64). This mismatch leads to missing objects and geometries, rendering a large portion of questions unanswerable or incorrect.
+            </p>
+            <p class="text-[18px] max-md:text-[17px] leading-[1.75] text-justify m-0 mt-4 relative z-10" style="color: rgba(255,255,255,0.9);">
+              Questions are unanswerable when queried objects are absent, and incorrect when frame-based answers deviate from full-scene ground truth.
+            </p>
+          </div>
+          <!-- Right: chart panel -->
+          <div class="flex-[3] min-w-0 p-6 border-l border-border max-md:border-l-0 max-md:border-t">
+            <div class="flex items-start justify-between mb-5 pb-3 border-b border-border/70 max-md:flex-col max-md:gap-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="inline-block w-1 h-4 rounded-sm bg-primary/80"></span>
+                  <p class="text-[17px] font-semibold text-primary m-0 leading-tight tracking-tight">VSI-Bench Question Answerability &amp; Correctness</p>
+                </div>
+                <p class="text-[15px] text-light font-medium m-0 mt-1.5 ml-3">by Frame Budget</p>
+              </div>
+              <div class="inline-flex items-center gap-1 flex-shrink-0 p-1 rounded-full bg-[#f5f5f7] border border-border/70">
+                <button class="frame-tab active" data-frame="16">16-Frame</button>
+                <button class="frame-tab" data-frame="32">32-Frame</button>
+                <button class="frame-tab" data-frame="64">64-Frame</button>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-[#f8fafa] border border-border/80 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
+              <div style="height: 320px;">
+                <canvas id="answerability-chart"></canvas>
+              </div>
+            </div>
+            <p class="text-[12.5px] text-light mt-4 italic text-center m-0">Statistics are derived from human annotations. Video frames are uniformly sampled using <code class="font-mono italic text-[11.5px] text-slate-700">np.linspace</code>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scene-card" data-scene="27dd4da69e">
+      <div class="scene-header">
+        <a href="https://vsibench.revsi.site/?dataset=ScanNetPPv2&scene=27dd4da69e" target="_blank" class="scene-badge hover:underline">Example 1</a>
+        <a href="https://vsibench.revsi.site/?dataset=ScanNetPPv2&scene=27dd4da69e" target="_blank" class="scene-label hover:underline">27dd4da69e</a>
+        <span class="scene-source">ScanNet++ v2</span>
+        <a href="https://vsibench.revsi.site/" target="_blank" class="ml-auto max-sm:hidden inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full text-muted hover:text-primary transition-colors no-underline">
+          Explore More <span class="normal-case tracking-normal">VSI-Bench</span> Data
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+      <div class="scene-media">
+        <div class="pcd-viewer relative" id="pcd-viewer-3">
+          <span class="viewer-label">3D Reconstructed Mesh</span>
+          <button type="button" class="bbox-toggle" data-state="on" aria-label="Toggle VSI-Bench annotations" aria-pressed="true">
+            <span class="bbox-toggle-dot w-1.5 h-1.5 rounded-full bg-red-500"></span>
+            <span><span class="normal-case font-bold tracking-normal">VSI-Bench</span> Annotations</span>
+            <span class="bbox-toggle-state text-red-500">ON</span>
+          </button>
+          <button type="button" data-pcd-expand class="absolute bottom-2 right-2 z-10 w-7 h-7 inline-flex items-center justify-center rounded-md bg-white/95 border border-gray-200 text-gray-700 hover:bg-white shadow-sm" aria-label="Expand mesh view" title="Expand">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+          </button>
+        </div>
+        <div class="relative rounded-xl overflow-hidden border border-border bg-black flex-1">
+          <video class="w-full h-auto" controls autoplay loop muted playsinline preload="none">
+            <source src="static/27dd4da69e/27dd4da69e.webm" type="video/webm">
+          </video>
+          <span class="viewer-label">Raw Video</span>
+        </div>
+      </div>
+      <div class="frame-strips">
+        <div class="frame-strip">
+          <span class="frame-strip-label">32-Frame Sampling</span>
+          <div class="frame-strip-row">
+            <img src="static/27dd4da69e/32_frame/frame_000.jpg" alt="Frame 0" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_001.jpg" alt="Frame 1" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_002.jpg" alt="Frame 2" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_003.jpg" alt="Frame 3" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_004.jpg" alt="Frame 4" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_005.jpg" alt="Frame 5" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_006.jpg" alt="Frame 6" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_007.jpg" alt="Frame 7" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_008.jpg" alt="Frame 8" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_009.jpg" alt="Frame 9" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_010.jpg" alt="Frame 10" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_011.jpg" alt="Frame 11" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_012.jpg" alt="Frame 12" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_013.jpg" alt="Frame 13" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_014.jpg" alt="Frame 14" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_015.jpg" alt="Frame 15" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_016.jpg" alt="Frame 16" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_017.jpg" alt="Frame 17" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_018.jpg" alt="Frame 18" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_019.jpg" alt="Frame 19" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_020.jpg" alt="Frame 20" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_021.jpg" alt="Frame 21" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_022.jpg" alt="Frame 22" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_023.jpg" alt="Frame 23" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_024.jpg" alt="Frame 24" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_025.jpg" alt="Frame 25" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_026.jpg" alt="Frame 26" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_027.jpg" alt="Frame 27" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_028.jpg" alt="Frame 28" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_029.jpg" alt="Frame 29" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_030.jpg" alt="Frame 30" loading="lazy">
+            <img src="static/27dd4da69e/32_frame/frame_031.jpg" alt="Frame 31" loading="lazy">
+          </div>
+        </div>
+        <div class="frame-strip">
+          <span class="frame-strip-label">16-Frame Sampling</span>
+          <div class="frame-strip-row">
+            <img src="static/27dd4da69e/16_frame/frame_000.jpg" alt="Frame 0" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_001.jpg" alt="Frame 1" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_002.jpg" alt="Frame 2" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_003.jpg" alt="Frame 3" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_004.jpg" alt="Frame 4" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_005.jpg" alt="Frame 5" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_006.jpg" alt="Frame 6" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_007.jpg" alt="Frame 7" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_008.jpg" alt="Frame 8" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_009.jpg" alt="Frame 9" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_010.jpg" alt="Frame 10" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_011.jpg" alt="Frame 11" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_012.jpg" alt="Frame 12" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_013.jpg" alt="Frame 13" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_014.jpg" alt="Frame 14" loading="lazy">
+            <img src="static/27dd4da69e/16_frame/frame_015.jpg" alt="Frame 15" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="scene-qa-section">
+        <p class="scene-qa-label">VSI-Bench QA Pairs</p>
+        <div class="qa-grid">
+          <div class="qa-item selected" data-qa-index="0">
+            <p class="qa-question">Measuring from the closest point of each object, what is the distance between the telephone and the tv (in meters)?</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">9.3</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">9.3 <span class="frame-hint">(32-Frame)</span>, N/A <span class="frame-hint">(16-Frame)</span></span></div>
+            </div>
+            <p class="qa-note">Telephone is invisible under 16-Frame sampling</p>
+          </div>
+          <div class="qa-item" data-qa-index="1">
+            <p class="qa-question">How many suitcase(s) are in this room?</p>
+            <div class="qa-answers">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">3</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">2 <span class="frame-hint">(32-Frame)</span>, 1 <span class="frame-hint">(16-Frame)</span></span></div>
+            </div>
+            <p class="qa-note">Visible suitcase count varies with frame sampling rate</p>
+          </div>
+          <div class="qa-item col-span-2" data-qa-index="2">
+            <p class="qa-question">What will be the first-time appearance order of the following categories in the video: sofa, door, suitcase, kettle?</p>
+            <div class="qa-answers !flex-nowrap">
+              <div class="qa-tag qa-tag-wrong"><span class="qa-tag-label">VSI-Bench GT</span><span class="qa-tag-value">door, sofa, suitcase, kettle</span></div>
+              <div class="qa-tag qa-tag-correct"><span class="qa-tag-label">Actual GT</span><span class="qa-tag-value">N/A <span class="frame-hint">(32-Frame)</span>, N/A <span class="frame-hint">(16-Frame)</span></span></div>
+            </div>
+            <p class="qa-note">Suitcase and sofa appear in the same frame</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ReVSI -->
+  <section id="revsi" class="pt-2 pb-16 max-md: max-md:pb-12" data-animate>
+    <div class="mb-14 max-md:mb-10 relative">
+      <div class="grid grid-cols-12 gap-x-10 gap-y-6 items-center">
+        <h2 class="col-span-12 lg:col-span-6 text-[2.75rem] max-md:text-[2rem] max-sm:text-[1.15rem] font-extrabold tracking-tight leading-[1.05] m-0" style="letter-spacing: -0.03em; color: #4a4a52;">
+          <span class="relative inline-block">
+            <span class="italic relative z-[1]">ReVSI</span>
+            <span aria-hidden="true" class="absolute left-0 right-0 bottom-1 h-[10px] rounded-sm -z-0" style="background: rgba(139, 187, 180, 0.55);"></span>
+          </span>
+        </h2>
+
+        <div class="col-span-12 lg:col-span-6 relative flex justify-end max-md:justify-start">
+          <div class="relative inline-block">
+            <span aria-hidden="true" class="hidden lg:block absolute left-0 top-3 bottom-1 w-[3px] rounded-full bg-gradient-to-b from-primary via-primary/40 to-transparent"></span>
+            <p class="text-[17.5px] max-md:text-[16px] text-muted leading-[1.75] m-0 lg:pl-6 text-right max-md:text-left">
+              <span class="block">&bull; Rethink</span>
+              <span class="block">&bull; Rebuild</span>
+              <span class="block">&bull; Reevaluate</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-5 max-md:grid-cols-1 gap-5">
+      <div class="bg-white border border-border rounded-2xl p-6 max-md:p-5 col-span-5 max-md:col-span-1" style="box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);" data-mesh-card data-scene="bde1e479ad">
+        <div class="flex items-start gap-4 mb-5 max-md:mb-4">
+          <span aria-hidden="true" class="hidden md:block w-1 self-stretch rounded-full bg-gradient-to-b from-primary via-primary/60 to-primary/10 mt-1"></span>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-[26px] max-md:text-[22px] font-extrabold tracking-tight leading-[1.15] m-0 mb-2.5 flex items-center gap-2.5" style="color: #4a4a52; letter-spacing: -0.02em;">
+              <span>
+                High Quality
+                <span class="text-light/80 font-semibold tracking-tight">— Expert-Level Annotations</span>
+              </span>
+            </h3>
+            <p class="text-[16px] max-md:text-[15px] text-muted leading-[1.65] m-0">
+              Every <span class="italic">ReVSI</span> scene is fully annotated by 3D experts — without any heuristic or model-predicted shortcuts — and passes multiple rounds of video-aware verification, ensuring accurate object names, instance identity, physical size, and faithful room-area boundaries.
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 max-md:grid-cols-1 gap-3 max-md:gap-5">
+          <div class="flex flex-col max-md:pr-0">
+            <div class="chart-card-label">Object Annotation</div>
+            <div class="mt-auto aspect-[16/10] w-full rounded-xl border border-border bg-[#f8fafa] overflow-hidden relative mesh-viewer" id="mesh-viewer-bde1e479ad">
+              <div class="absolute bottom-2 right-2 z-30 inline-flex items-center gap-1 p-0.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/15">
+                <button type="button" class="category-pick inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-full transition-all duration-200 text-white/75 hover:text-white data-[active=true]:bg-white data-[active=true]:text-gray-900 data-[active=true]:shadow-[0_1px_3px_rgba(0,0,0,0.3)]" data-category="chair" data-active="true">
+                  <span>Chairs</span>
+                </button>
+                <button type="button" class="category-pick inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-full transition-all duration-200 text-white/75 hover:text-white data-[active=true]:bg-white data-[active=true]:text-gray-900 data-[active=true]:shadow-[0_1px_3px_rgba(0,0,0,0.3)]" data-category="table" data-active="false">
+                  <span>Tables</span>
+                </button>
+                <button type="button" data-mesh-expand class="inline-flex items-center justify-center w-6 h-6 ml-0.5 rounded-full text-white/75 hover:text-white hover:bg-white/15 transition-colors" aria-label="Expand mesh view" title="Expand">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                </button>
+              </div>
+              <span class="absolute bottom-2 left-2 z-30 bg-black/50 text-white text-[10.5px] font-medium px-2 py-1 rounded backdrop-blur-sm pointer-events-none">bde1e479ad · ScanNet++ v2</span>
+              <div class="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2 py-1 rounded-md border border-gray-200">
+                <span class="w-2 h-2 rounded-sm" style="background:#ef4444"></span>
+                <span class="italic normal-case tracking-normal">VSI-Bench</span>
+                <span class="text-light/80 normal-case tracking-normal" data-count-vsi></span>
+              </div>
+              <div class="absolute top-2 right-2 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2 py-1 rounded-md border border-gray-200">
+                <span class="w-2 h-2 rounded-sm" style="background:#10b981"></span>
+                <span class="italic normal-case tracking-normal">ReVSI</span>
+                <span class="text-light/80 normal-case tracking-normal" data-count-revsi></span>
+              </div>
+              <div class="split-handle absolute top-0 bottom-0 z-20 -translate-x-1/2 cursor-ew-resize select-none touch-none" data-split-handle style="left:50%;width:24px;">
+                <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-white/85 shadow-[0_0_0_1px_rgba(0,0,0,0.25)]"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white shadow-md border border-gray-300 flex items-center justify-center text-gray-600">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 3 12 9 18"></polyline><polyline points="15 6 21 12 15 18"></polyline></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col max-md:pl-0 max-md:pt-5">
+            <div class="chart-card-label">Room Size Annotation</div>
+            <div class="mt-auto aspect-[16/10] w-full rounded-xl border border-border bg-[#f8fafa] overflow-hidden relative floor-compare" data-floor-compare>
+              <img src="static/scene0441_00/floor.png" alt="Scene floor plan" class="absolute inset-0 w-full h-full object-contain p-20 max-md:p-12 select-none pointer-events-none" loading="lazy" draggable="false">
+              <img src="static/scene0441_00/vsibench_floor.png" alt="VSI-Bench annotations" class="absolute inset-0 w-full h-full object-contain p-[81px] max-md:p-[49px] select-none pointer-events-none floor-overlay-vsi opacity-70" loading="lazy" draggable="false">
+              <img src="static/scene0441_00/revsi_floor.png" alt="ReVSI annotations" class="absolute inset-0 w-full h-full object-contain p-[84px] max-md:p-[50px] select-none pointer-events-none floor-overlay-revsi opacity-70" loading="lazy" draggable="false">
+              <span class="absolute bottom-2 left-2 z-30 bg-black/50 text-white text-[10.5px] font-medium px-2 py-1 rounded backdrop-blur-sm pointer-events-none">scene0441_00 · ScanNet v2</span>
+              <button type="button" class="absolute bottom-2 right-2 z-30 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 text-white text-[11px] font-semibold transition-colors hover:bg-black/70 cursor-pointer" data-floor-toggle data-state="on">
+                <span class="floor-toggle-dot w-1.5 h-1.5 rounded-full bg-white"></span>
+                <span class="floor-toggle-label">Annotations On</span>
+              </button>
+              <div class="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2 py-1 rounded-md border border-gray-200 floor-tag-vsi">
+                <span class="w-2 h-2 rounded-sm" style="background:#ef4444"></span>
+                <span class="italic normal-case tracking-normal">VSI-Bench</span>
+                <span class="text-light/80 normal-case tracking-normal">(6.9 m²)</span>
+              </div>
+              <div class="absolute top-2 right-2 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2 py-1 rounded-md border border-gray-200 floor-tag-revsi">
+                <span class="w-2 h-2 rounded-sm" style="background:#8BBBB4"></span>
+                <span class="italic normal-case tracking-normal">ReVSI</span>
+                <span class="text-light/80 normal-case tracking-normal">(9.9 m²)</span>
+              </div>
+              <div class="absolute top-0 bottom-0 z-20 -translate-x-1/2 cursor-ew-resize select-none touch-none" data-floor-handle style="left:50%;width:24px;">
+                <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-white/85 shadow-[0_0_0_1px_rgba(0,0,0,0.25)]"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white shadow-md border border-gray-300 flex items-center justify-center text-gray-600">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 3 12 9 18"></polyline><polyline points="15 6 21 12 15 18"></polyline></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border border-border rounded-2xl p-6 flex flex-col col-span-5 max-md:col-span-1" style="box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);">
+        <div class="flex items-start gap-4 mb-5 max-md:mb-4">
+          <span aria-hidden="true" class="hidden md:block w-1 self-stretch rounded-full bg-gradient-to-b from-primary via-primary/60 to-primary/10 mt-1"></span>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-[26px] max-md:text-[22px] font-extrabold tracking-tight leading-[1.15] m-0 mb-2.5 flex items-center gap-2.5" style="color: #4a4a52; letter-spacing: -0.02em;">
+              <span>
+                Great Diversity
+                <span class="text-light/80 font-semibold tracking-tight">— Broader Scenes, Richer Objects &amp; Varied Question Templates</span>
+              </span>
+            </h3>
+            <p class="text-[16px] max-md:text-[15px] text-muted leading-[1.65] m-0">
+              <span class="italic">ReVSI</span> covers more scenes, more object instances, and a substantially larger object vocabulary than <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="link-muted">VSI-Bench</a>, with open-vocabulary support that frees evaluation from a fixed label set.
+            </p>
+          </div>
+        </div>
+        <div class="mt-auto grid grid-cols-3 max-md:grid-cols-1 gap-6 max-md:gap-5">
+          <div class="flex flex-col">
+            <div class="chart-card-label">Benchmark Scale</div>
+            <div class="rounded-xl border border-border bg-[#f8fafa] py-2 pl-2 max-md:py-3 max-md:pl-4 max-md:pr-6 overflow-visible">
+              <div class="relative w-full" style="height: 220px;">
+                <canvas id="diversity-chart" aria-label="Dataset comparison: ReVSI vs VSI-Bench. Scene Sources: 5 vs 3. Scenes: 381 vs 288 (1.32x). Objects: 5,365 vs 3,185 (1.68x). Object Labels: 504 vs 65 (7.75x)."></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div class="chart-card-label">Open Vocabulary Object Labels</div>
+            <div class="rounded-xl border border-border bg-[#f8fafa] p-3 max-md:p-3 relative overflow-hidden" style="height: 244px;">
+              <div class="absolute inset-0" data-vocab-split>
+                <div class="absolute inset-0 overflow-hidden" data-vocab-pane="vsi" style="clip-path: inset(0 50% 0 0);">
+                  <svg id="vocab-cloud-vsi" class="absolute inset-0 w-full h-full select-none touch-none"></svg>
+                </div>
+                <div class="absolute inset-0 overflow-hidden" data-vocab-pane="revsi" style="clip-path: inset(0 0 0 50%);">
+                  <svg id="vocab-cloud" class="absolute inset-0 w-full h-full select-none touch-none"></svg>
+                </div>
+                <div class="split-handle absolute top-0 bottom-0 z-20 -translate-x-1/2 cursor-ew-resize select-none touch-none" data-vocab-handle style="left:50%;width:24px;">
+                  <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-white/85 shadow-[0_0_0_1px_rgba(0,0,0,0.25)]"></div>
+                  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white shadow-md border border-gray-300 flex items-center justify-center text-gray-600">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 3 12 9 18"></polyline><polyline points="15 6 21 12 15 18"></polyline></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2 py-1 rounded-md border border-gray-200 origin-top-left" data-vocab-tag="vsi" style="clip-path: inset(0 50% 0 0);">
+                <span class="w-2 h-2 rounded-sm" style="background:#cbd5d9"></span>
+                <span class="italic normal-case tracking-normal">VSI-Bench</span>
+                <span class="text-light/80 normal-case tracking-normal">(65 Labels)</span>
+              </div>
+              <div class="absolute top-2 right-2 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2 py-1 rounded-md border border-gray-200 origin-top-right" data-vocab-tag="revsi" style="clip-path: inset(0 0 0 50%);">
+                <span class="w-2 h-2 rounded-sm" style="background:#8BBBB4"></span>
+                <span class="italic normal-case tracking-normal">ReVSI</span>
+                <span class="text-light/80 normal-case tracking-normal">(504 Labels)</span>
+              </div>
+              <button type="button" data-vocab-expand class="absolute bottom-2 right-2 z-10 w-7 h-7 inline-flex items-center justify-center rounded-md bg-white/95 border border-gray-200 text-gray-700 hover:bg-white" aria-label="Expand">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div class="chart-card-label">Question Templates</div>
+            <div class="rounded-xl border border-border bg-[#f8fafa] py-2.5 px-3 relative flex flex-col" style="height: 244px;">
+              <div class="flex items-center gap-2 mb-2">
+                <label for="qt-select" class="text-[12px] font-semibold whitespace-nowrap" style="color:#4a4a52;">Question Type</label>
+                <select id="qt-select" class="flex-1 text-[12.5px] font-semibold border border-border rounded-md bg-white px-2 py-1 cursor-pointer focus:outline-none focus:border-primary" style="color:#4a4a52;"></select>
+              </div>
+              <div id="qt-body" class="flex-1 overflow-y-auto pr-0.5 space-y-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border border-border rounded-2xl p-6 flex flex-col col-span-3 max-md:col-span-1" style="box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);">
+        <div class="flex items-start gap-4 mb-5 max-md:mb-4">
+          <span aria-hidden="true" class="hidden md:block w-1 self-stretch rounded-full bg-gradient-to-b from-primary via-primary/60 to-primary/10 mt-1"></span>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-[26px] max-md:text-[22px] font-extrabold tracking-tight leading-[1.15] m-0 mb-2.5 flex items-center gap-2.5" style="color: #4a4a52; letter-spacing: -0.02em;">
+              <span>
+                Balanced Answer Distribution
+                <span class="block text-light/80 font-semibold tracking-tight text-[26px] max-md:text-[22px]">Mitigates Frequency-Based Shortcuts</span>
+              </span>
+            </h3>
+            <p class="text-[16px] max-md:text-[15px] text-muted leading-[1.65] m-0">
+              Answers are spread evenly across the value range for both numerical and multiple-choice questions, preventing models from scoring high by exploiting skewed answer frequencies.
+            </p>
+          </div>
+        </div>
+        <div class="mt-auto grid grid-cols-2 max-md:grid-cols-1 gap-3">
+          <div class="flex flex-col">
+            <div class="chart-card-label">Object Counting · Answer Distribution</div>
+            <div class="rounded-xl border border-border bg-[#f8fafa] pt-1.5 px-3 pb-3 overflow-visible flex-1 flex flex-col">
+              <div class="flex-1 min-h-0">
+                <canvas id="balance-count-chart"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div class="chart-card-label">Absolute Distance · Answer Distribution</div>
+            <div class="rounded-xl border border-border bg-[#f8fafa] pt-1.5 px-3 pb-3 overflow-visible flex-1 flex flex-col">
+              <div class="flex-1 min-h-0">
+                <canvas id="balance-distance-chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border border-border rounded-2xl p-6 flex flex-col col-span-2 max-md:col-span-1" style="box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);">
+        <div class="flex items-start gap-4 mb-5 max-md:mb-4">
+          <span aria-hidden="true" class="hidden md:block w-1 self-stretch rounded-full bg-gradient-to-b from-primary via-primary/60 to-primary/10 mt-1"></span>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-[26px] max-md:text-[22px] font-extrabold tracking-tight leading-[1.15] m-0 mb-2.5 flex items-center gap-2.5" style="color: #4a4a52; letter-spacing: -0.02em;">
+              <span>
+                Frame-Adaptive
+                <span class="block text-light/80 font-semibold tracking-tight text-[26px] max-md:text-[22px]">What We Ask, What the Model Sees</span>
+              </span>
+            </h3>
+            <p class="text-[16px] max-md:text-[15px] text-muted leading-[1.65] m-0">
+              Ground-truth answers adapt to different input frame budget, reflecting what the model actually sees.
+            </p>
+          </div>
+        </div>
+        <div class="mt-2">
+          <div class="chart-card-label">Same Question · Frame-Specific Ground Truth</div>
+          <div class="rounded-xl border border-border bg-[#f8fafa] p-4 overflow-hidden">
+            <p class="text-[14px] text-muted m-0 mb-3 leading-snug">
+              <span class="font-semibold text-[#4a4a52]">Question:</span> How many <span class="italic">chair(s)</span> are in this room?
+            </p>
+            <p class="text-[14px] text-muted m-0 mb-2 leading-snug">
+              <span class="font-semibold text-[#4a4a52]">Answer:</span>
+            </p>
+            <div class="grid grid-cols-4 gap-2 max-md:grid-cols-2">
+              <div class="rounded-lg border border-border bg-white px-3 py-2.5 text-center">
+                <div class="text-[10.5px] font-bold uppercase tracking-[0.1em] text-light">All-Frame</div>
+                <div class="text-[20.5px] font-extrabold tabular-nums mt-0.5" style="color: #4a4a52;">12</div>
+              </div>
+              <div class="rounded-lg border border-border bg-white px-3 py-2.5 text-center">
+                <div class="text-[10.5px] font-bold uppercase tracking-[0.1em] text-light">64-Frame</div>
+                <div class="text-[20.5px] font-extrabold tabular-nums mt-0.5" style="color: #4a4a52;">11</div>
+              </div>
+              <div class="rounded-lg border border-border bg-white px-3 py-2.5 text-center">
+                <div class="text-[10.5px] font-bold uppercase tracking-[0.1em] text-light">32-Frame</div>
+                <div class="text-[20.5px] font-extrabold tabular-nums mt-0.5" style="color: #4a4a52;">9</div>
+              </div>
+              <div class="rounded-lg border border-border bg-white px-3 py-2.5 text-center">
+                <div class="text-[10.5px] font-bold uppercase tracking-[0.1em] text-light">16-Frame</div>
+                <div class="text-[20.5px] font-extrabold tabular-nums mt-0.5" style="color: #4a4a52;">6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experimental Results -->
+  <section id="results" class="pt-2 pb-16 max-md:pt-2 max-md:pb-12" data-animate>
+    <div class="mb-10">
+      <h2 class="text-[2.75rem] max-md:text-[2rem] max-sm:text-[1.15rem] font-extrabold tracking-tight leading-[1.05] m-0 mb-5" style="letter-spacing: -0.03em; color: #4a4a52;">
+        Experiments
+      </h2>
+    </div>
+    <div class="pitfall-header">
+      <span class="pitfall-number">Finding 1</span>
+      <h3 class="pitfall-title">Open-Source Models Are Systematically Overestimated</h3>
+    </div>
+    <p class="pitfall-lead">
+      Evaluations on ReVSI with corresponding <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="link-muted">VSI-Bench</a> scores shown in parentheses. For ReVSI, each model is evaluated against frame-sampling-specific ground-truth answers corresponding to its inference frames (shown in <em>Frames</em> column), whereas <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="link-muted">VSI-Bench</a> uses a single set of ground-truth answers shared across all frame settings. ReVSI scores that exceed their <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="link-muted">VSI-Bench</a> counterparts are highlighted in <span class="lead-chip lead-chip-better">green</span>.
+    </p>
+
+    <div class="table-wrapper">
+      <table class="results">
+        <thead>
+          <tr>
+            <th rowspan="2" class="text-left">Method</th>
+            <th rowspan="2">Frames</th>
+            <th colspan="4">Numerical Question</th>
+            <th colspan="3">Multiple-Choice Question</th>
+            <th rowspan="2">Avg.</th>
+          </tr>
+          <tr>
+            <th>Obj. Cnt.</th>
+            <th>Abs. Dist.</th>
+            <th>Obj. Size</th>
+            <th>Room Size</th>
+            <th>Rel. Dist.</th>
+            <th>Rel. Dir.</th>
+            <th>Route Plan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Baseline -->
+          <tr class="group-header"><td colspan="10"><em>Baseline</em></td></tr>
+          <tr>
+            <td class="text-left">Chance (Random)</td>
+            <td>ALL</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>23.7 <span class="vsi">25.0</span></td>
+            <td>26.8 <span class="vsi">36.1</span></td>
+            <td>26.0 <span class="vsi">28.3</span></td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td class="text-left">Chance (Frequency)</td>
+            <td>ALL</td>
+            <td>52.2 <span class="vsi">62.1</span></td>
+            <td>40.1 <span class="vsi">32.0</span></td>
+            <td>17.4 <span class="vsi">29.9</span></td>
+            <td>20.9 <span class="vsi">33.1</span></td>
+            <td>25.8 <span class="vsi">25.1</span></td>
+            <td>31.9 <span class="vsi">47.9</span></td>
+            <td>30.2 <span class="vsi">28.4</span></td>
+            <td>31.4 <span class="vsi">34.0</span></td>
+          </tr>
+          <!-- Proprietary Models -->
+          <tr class="group-header"><td colspan="10"><em>Proprietary Models (API)</em></td></tr>
+          <tr>
+            <td class="text-left">GPT-5.2</td>
+            <td>64</td>
+            <td>56.2 <span class="vsi">57.1</span></td>
+            <td><span class="better">41.5</span> <span class="vsi">33.4</span></td>
+            <td><span class="better">73.9</span> <span class="vsi">64.6</span></td>
+            <td><span class="better">63.0</span> <span class="vsi">59.0</span></td>
+            <td><span class="better">48.4</span> <span class="vsi">48.0</span></td>
+            <td><span class="better">34.9</span> <span class="vsi">33.3</span></td>
+            <td><span class="better">38.2</span> <span class="vsi">36.7</span></td>
+            <td><span class="better">50.9</span> <span class="vsi">49.2</span></td>
+          </tr>
+          <tr>
+            <td class="text-left">Gemini 3 Flash</td>
+            <td>1 FPS</td>
+            <td><span class="better">65.7</span> <span class="vsi">45.6</span></td>
+            <td><span class="better">53.1</span> <span class="vsi">36.3</span></td>
+            <td><span class="better">77.6</span> <span class="vsi">74.9</span></td>
+            <td><span class="better">52.8</span> <span class="vsi">47.4</span></td>
+            <td><span class="better">64.6</span> <span class="vsi">54.3</span></td>
+            <td>47.9 <span class="vsi">52.4</span></td>
+            <td>41.8 <span class="vsi">50.0</span></td>
+            <td><span class="better">57.6</span> <span class="vsi">55.9</span></td>
+          </tr>
+          <tr>
+            <td class="text-left">Gemini 3 Pro</td>
+            <td>1 FPS</td>
+            <td><span class="better">60.1</span> <span class="vsi">45.3</span></td>
+            <td><span class="better">54.7</span> <span class="vsi">38.3</span></td>
+            <td><span class="better">79.3</span> <span class="vsi">73.0</span></td>
+            <td><span class="better">51.9</span> <span class="vsi">47.4</span></td>
+            <td>68.1 <span class="vsi">70.0</span></td>
+            <td>56.0 <span class="vsi">60.8</span></td>
+            <td>56.4 <span class="vsi">65.3</span></td>
+            <td><span class="better">60.9</span> <span class="vsi">60.5</span></td>
+          </tr>
+          <!-- Open-Source Models -->
+          <tr class="group-header"><td colspan="10"><em>Open-Source Models</em></td></tr>
+          <tr>
+            <td class="text-left">Qwen3-VL-8B-Instruct</td>
+            <td>64</td>
+            <td>40.4 <span class="vsi">70.0</span></td>
+            <td><span class="better">52.3</span> <span class="vsi">50.5</span></td>
+            <td>69.0 <span class="vsi">74.7</span></td>
+            <td>45.1 <span class="vsi">63.3</span></td>
+            <td>57.1 <span class="vsi">57.3</span></td>
+            <td>39.5 <span class="vsi">52.3</span></td>
+            <td><span class="better">40.5</span> <span class="vsi">33.5</span></td>
+            <td>49.1 <span class="vsi">57.4</span></td>
+          </tr>
+          <tr>
+            <td class="text-left">Qwen3-VL-32B-Instruct</td>
+            <td>64</td>
+            <td>46.9 <span class="vsi">74.0</span></td>
+            <td><span class="better">65.0</span> <span class="vsi">57.0</span></td>
+            <td>70.4 <span class="vsi">76.6</span></td>
+            <td>55.8 <span class="vsi">70.8</span></td>
+            <td>53.8 <span class="vsi">55.6</span></td>
+            <td>34.0 <span class="vsi">59.1</span></td>
+            <td><span class="better">47.3</span> <span class="vsi">39.7</span></td>
+            <td>53.3 <span class="vsi">61.8</span></td>
+          </tr>
+          <tr>
+            <td class="text-left">InternVL3.5-8B</td>
+            <td>64</td>
+            <td>43.3 <span class="vsi">72.7</span></td>
+            <td><span class="better">54.6</span> <span class="vsi">40.3</span></td>
+            <td>64.2 <span class="vsi">68.4</span></td>
+            <td>47.6 <span class="vsi">65.3</span></td>
+            <td>45.0 <span class="vsi">57.0</span></td>
+            <td>36.3 <span class="vsi">48.6</span></td>
+            <td><span class="better">44.4</span> <span class="vsi">35.6</span></td>
+            <td>47.9 <span class="vsi">55.4</span></td>
+          </tr>
+          <tr>
+            <td class="text-left">InternVL3.5-38B</td>
+            <td>64</td>
+            <td>43.8 <span class="vsi">73.9</span></td>
+            <td><span class="better">60.6</span> <span class="vsi">39.2</span></td>
+            <td>70.2 <span class="vsi">73.0</span></td>
+            <td>58.4 <span class="vsi">65.0</span></td>
+            <td>57.4 <span class="vsi">66.2</span></td>
+            <td>45.9 <span class="vsi">72.0</span></td>
+            <td><span class="better">42.7</span> <span class="vsi">36.1</span></td>
+            <td>54.1 <span class="vsi">60.8</span></td>
+          </tr>
+          <tr>
+            <td class="text-left">LLaVA-Video-7B-Qwen2</td>
+            <td>64</td>
+            <td>31.3 <span class="vsi">48.5</span></td>
+            <td>1.4 <span class="vsi">14.0</span></td>
+            <td><span class="better">52.5</span> <span class="vsi">47.8</span></td>
+            <td>16.7 <span class="vsi">24.2</span></td>
+            <td>38.3 <span class="vsi">43.5</span></td>
+            <td>33.3 <span class="vsi">42.4</span></td>
+            <td><span class="better">38.4</span> <span class="vsi">34.0</span></td>
+            <td>30.3 <span class="vsi">36.3</span></td>
+          </tr>
+          <tr>
+            <td class="text-left">LLaVA-Video-72B-Qwen2</td>
+            <td>64</td>
+            <td>40.1 <span class="vsi">48.9</span></td>
+            <td><span class="better">29.6</span> <span class="vsi">22.8</span></td>
+            <td><span class="better">59.3</span> <span class="vsi">57.4</span></td>
+            <td>27.9 <span class="vsi">35.3</span></td>
+            <td>39.6 <span class="vsi">42.4</span></td>
+            <td>24.8 <span class="vsi">36.7</span></td>
+            <td><span class="better">43.0</span> <span class="vsi">35.0</span></td>
+            <td>37.8 <span class="vsi">40.9</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pitfall-header mt-12">
+      <span class="pitfall-number">Finding 2</span>
+      <h3 class="pitfall-title">Spatial Fine-Tuning Does Not Reliably Generalize</h3>
+    </div>
+    <p class="pitfall-lead">
+      Performance of specialized 3D VLMs and their <span class="lead-chip lead-chip-base">base models</span> on ReVSI with corresponding <a href="https://vision-x-nyu.github.io/thinking-in-space.github.io/" target="_blank" class="link-muted">VSI-Bench</a> scores shown in parentheses. ReVSI evaluates each model under its native inference frame setting using frame-adaptive ground-truth answers. Scores lower than the base model are highlighted in <span class="lead-chip lead-chip-worse">red</span>.
+    </p>
+
+    <div class="table-wrapper">
+      <table class="results">
+        <thead>
+          <tr>
+            <th rowspan="2" class="text-left">Method</th>
+            <th rowspan="2">Frames</th>
+            <th colspan="4">Numerical Question</th>
+            <th colspan="3">Multiple-Choice Question</th>
+            <th rowspan="2">Avg.</th>
+          </tr>
+          <tr>
+            <th>Obj. Cnt.</th>
+            <th>Abs. Dist.</th>
+            <th>Obj. Size</th>
+            <th>Room Size</th>
+            <th>Rel. Dist.</th>
+            <th>Rel. Dir.</th>
+            <th>Route Plan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="base-model"><td class="text-left"><em>Qwen2.5-7B-Instruct+SigLIP2</em></td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+          <tr>
+            <td class="text-left pl-6"><a href="https://cambrian-mllm.github.io/cambrian-s/" target="_blank" class="link-muted">Cambrian-S-7B</a></td>
+            <td>128</td>
+            <td>48.4 <span class="vsi">73.2</span></td>
+            <td>60.5 <span class="vsi">50.5</span></td>
+            <td>65.5 <span class="vsi">74.9</span></td>
+            <td>46.7 <span class="vsi">72.2</span></td>
+            <td>37.1 <span class="vsi">71.1</span></td>
+            <td>48.5 <span class="vsi">76.2</span></td>
+            <td>37.0 <span class="vsi">41.8</span></td>
+            <td>49.1 <span class="vsi">67.5</span></td>
+          </tr>
+          <tr class="base-model">
+            <td class="text-left"><em>Qwen2.5-VL-7B-Instruct</em></td>
+            <td>4 FPS</td>
+            <td>36.9 <span class="vsi">36.8</span></td>
+            <td>15.0 <span class="vsi">17.6</span></td>
+            <td>49.7 <span class="vsi">51.0</span></td>
+            <td>29.0 <span class="vsi">29.2</span></td>
+            <td>31.5 <span class="vsi">35.4</span></td>
+            <td>29.5 <span class="vsi">38.4</span></td>
+            <td>36.7 <span class="vsi">33.5</span></td>
+            <td>32.6 <span class="vsi">32.6</span></td>
+          </tr>
+          <tr>
+            <td class="text-left pl-6"><a href="https://yangr116.github.io/vst_project/" target="_blank" class="link-muted">VST-7B-SFT</a></td>
+            <td>4 FPS</td>
+            <td><span class="worse">35.4</span> <span class="vsi">72.0</span></td>
+            <td>52.6 <span class="vsi">44.4</span></td>
+            <td>67.9 <span class="vsi">74.3</span></td>
+            <td>47.2 <span class="vsi">68.3</span></td>
+            <td>49.2 <span class="vsi">59.7</span></td>
+            <td>36.9 <span class="vsi">55.8</span></td>
+            <td><span class="worse">35.4</span> <span class="vsi">44.9</span></td>
+            <td>46.4 <span class="vsi">65.2</span></td>
+          </tr>
+          <tr class="base-model">
+            <td class="text-left"><em>Qwen2.5-VL-7B-Instruct</em></td>
+            <td>32</td>
+            <td>34.3 <span class="vsi">43.7</span></td>
+            <td>21.7 <span class="vsi">22.3</span></td>
+            <td>45.5 <span class="vsi">49.2</span></td>
+            <td>35.1 <span class="vsi">37.5</span></td>
+            <td>32.6 <span class="vsi">40.1</span></td>
+            <td>33.7 <span class="vsi">38.9</span></td>
+            <td>34.1 <span class="vsi">32.0</span></td>
+            <td>33.9 <span class="vsi">37.7</span></td>
+          </tr>
+          <tr>
+            <td class="text-left pl-6"><a href="https://github.com/OuyangKun10/SpaceR" target="_blank" class="link-muted">SpaceR-7B (SG-RLVR)</a></td>
+            <td>32</td>
+            <td><span class="worse">30.7</span> <span class="vsi">61.9</span></td>
+            <td>34.5 <span class="vsi">28.6</span></td>
+            <td>52.0 <span class="vsi">60.9</span></td>
+            <td><span class="worse">18.6</span> <span class="vsi">35.2</span></td>
+            <td><span class="worse">22.8</span> <span class="vsi">38.2</span></td>
+            <td>34.5 <span class="vsi">46.0</span></td>
+            <td><span class="worse">20.2</span> <span class="vsi">31.4</span></td>
+            <td><span class="worse">30.5</span> <span class="vsi">43.5</span></td>
+          </tr>
+          <tr class="base-model">
+            <td class="text-left"><em>Qwen2.5-VL-3B-Instruct</em></td>
+            <td>16</td>
+            <td>18.7 <span class="vsi">24.3</span></td>
+            <td>15.6 <span class="vsi">24.7</span></td>
+            <td>16.8 <span class="vsi">31.7</span></td>
+            <td>-- <span class="vsi">22.6</span></td>
+            <td>33.2 <span class="vsi">38.3</span></td>
+            <td>34.3 <span class="vsi">41.6</span></td>
+            <td>-- <span class="vsi">26.3</span></td>
+            <td>23.7 <span class="vsi">30.6</span></td>
+          </tr>
+          <tr>
+            <td class="text-left pl-6"><a href="https://diankun-wu.github.io/Spatial-MLLM/" target="_blank" class="link-muted">Spatial-MLLM-4B-135k</a></td>
+            <td>16</td>
+            <td>40.7 <span class="vsi">65.8</span></td>
+            <td>45.3 <span class="vsi">40.7</span></td>
+            <td>46.8 <span class="vsi">58.3</span></td>
+            <td>-- <span class="vsi">55.6</span></td>
+            <td><span class="worse">32.3</span> <span class="vsi">43.2</span></td>
+            <td>37.4 <span class="vsi">55.5</span></td>
+            <td>-- <span class="vsi">36.1</span></td>
+            <td>40.5 <span class="vsi">50.7</span></td>
+          </tr>
+          <tr>
+            <td class="text-left pl-6"><a href="https://diankun-wu.github.io/Spatial-MLLM/" target="_blank" class="link-muted">Spatial-MLLM-4B-820k</a></td>
+            <td>16</td>
+            <td>41.5 <span class="vsi">66.7</span></td>
+            <td>40.0 <span class="vsi">37.9</span></td>
+            <td>53.1 <span class="vsi">69.7</span></td>
+            <td>-- <span class="vsi">55.7</span></td>
+            <td><span class="worse">30.7</span> <span class="vsi">52.0</span></td>
+            <td>39.2 <span class="vsi">54.9</span></td>
+            <td>-- <span class="vsi">39.7</span></td>
+            <td>40.9 <span class="vsi">53.8</span></td>
+          </tr>
+          <tr class="base-model">
+            <td class="text-left"><em>LLaVA-Video-7B-Qwen2</em></td>
+            <td>32</td>
+            <td>29.9 <span class="vsi">48.5</span></td>
+            <td>1.5 <span class="vsi">14.0</span></td>
+            <td>53.0 <span class="vsi">47.8</span></td>
+            <td>19.3 <span class="vsi">24.2</span></td>
+            <td>39.1 <span class="vsi">43.5</span></td>
+            <td>33.8 <span class="vsi">42.4</span></td>
+            <td>38.8 <span class="vsi">34.0</span></td>
+            <td>30.8 <span class="vsi">36.3</span></td>
+          </tr>
+          <tr>
+            <td class="text-left pl-6"><a href="https://vlm-3r.github.io/" target="_blank" class="link-muted">VLM3R-7B</a></td>
+            <td>32</td>
+            <td>41.6 <span class="vsi">70.2</span></td>
+            <td>61.6 <span class="vsi">49.4</span></td>
+            <td>64.8 <span class="vsi">69.2</span></td>
+            <td>52.5 <span class="vsi">67.1</span></td>
+            <td>46.5 <span class="vsi">65.4</span></td>
+            <td>49.5 <span class="vsi">80.5</span></td>
+            <td><span class="worse">34.1</span> <span class="vsi">45.4</span></td>
+            <td>50.1 <span class="vsi">60.9</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pitfall-header mt-12">
+      <span class="pitfall-number">Finding 3</span>
+      <h3 class="pitfall-title">Vision-Language Models Can Overlook Visual Inputs</h3>
+    </div>
+    <p class="pitfall-lead">
+      Object counting results on dummy videos where the ground-truth answer is always <code class="lead-code">0</code>. <strong>Query-Drop</strong> removes frames containing the queried object while preserving the surrounding scene and other objects. <strong>First-Frame</strong> repeats the first frame of the Query-Drop video across all frames. <strong>Black</strong> uses pure black frames for the whole video. Exact Match accuracy is reported over 997 questions, with <code class="lead-code">0</code> as the only correct answer. Fine-tuned models tend to lean on strong priors learned from training data when answering, often overlooking the actual visual input.
+    </p>
+
+    <div class="grid grid-cols-2 max-md:grid-cols-1 gap-6 items-stretch">
+      <div class="dummy-video-grid">
+        <div class="dummy-row">
+          <div class="dummy-row-label">Real Video</div>
+          <div class="dummy-row-frames">
+            <img src="static/dummy_video/real_0.jpg" alt="real frame 0">
+            <img src="static/dummy_video/real_1.jpg" alt="real frame 1">
+            <div class="dummy-ellipsis">···</div>
+            <img src="static/dummy_video/real_2.jpg" alt="real frame 2">
+          </div>
+        </div>
+        <div class="dummy-row">
+          <div class="dummy-row-label">Query-Drop Video</div>
+          <div class="dummy-row-frames">
+            <img src="static/dummy_video/query_drop_0.jpg" alt="query-drop frame 0">
+            <img src="static/dummy_video/query_drop_1.jpg" alt="query-drop frame 1">
+            <div class="dummy-ellipsis">···</div>
+            <img src="static/dummy_video/query_drop_2.jpg" alt="query-drop frame 2">
+          </div>
+        </div>
+        <div class="dummy-row">
+          <div class="dummy-row-label">First-Frame Video</div>
+          <div class="dummy-row-frames">
+            <img src="static/dummy_video/query_drop_0.jpg" alt="first-frame repeat">
+            <img src="static/dummy_video/query_drop_0.jpg" alt="first-frame repeat">
+            <div class="dummy-ellipsis">···</div>
+            <img src="static/dummy_video/query_drop_0.jpg" alt="first-frame repeat">
+          </div>
+        </div>
+        <div class="dummy-row">
+          <div class="dummy-row-label">Black Video</div>
+          <div class="dummy-row-frames">
+            <div class="dummy-black"></div>
+            <div class="dummy-black"></div>
+            <div class="dummy-ellipsis">···</div>
+            <div class="dummy-black"></div>
+          </div>
+        </div>
+        <p class="dummy-caption">Three dummy-video constructions used to probe whether models rely on visual evidence when answering object-counting questions.</p>
+      </div>
+
+      <div class="table-wrapper !my-0">
+        <table class="results results-compact">
+          <thead>
+            <tr>
+              <th rowspan="2" class="text-left">Method</th>
+              <th colspan="3">Accuracy (Exact Match)</th>
+            </tr>
+            <tr>
+              <th>Query-Drop</th>
+              <th>First-Frame</th>
+              <th>Black</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-header"><td class="text-left" colspan="4"><em>Zero-shot</em></td></tr>
+            <tr><td class="text-left">Human</td><td>100.0</td><td>100.0</td><td>100.0</td></tr>
+            <tr><td class="text-left">GPT-5.2</td><td>74.0</td><td>89.6</td><td>99.2</td></tr>
+            <tr><td class="text-left">Gemini 3 Pro</td><td>62.3</td><td>85.0</td><td>94.0</td></tr>
+            <tr><td class="text-left">Qwen2.5-VL-7B-Instruct</td><td>55.8</td><td>79.9</td><td>99.8</td></tr>
+            <tr><td class="text-left">Qwen3-VL-8B-Instruct</td><td>34.7</td><td>80.9</td><td>99.8</td></tr>
+            <tr><td class="text-left">Qwen3-VL-32B-Instruct</td><td>50.5</td><td>92.7</td><td>100.0</td></tr>
+            <tr><td class="text-left">InternVL3.5-8B</td><td>14.7</td><td>52.5</td><td>17.7</td></tr>
+            <tr><td class="text-left">InternVL3.5-38B</td><td>9.1</td><td>45.0</td><td>1.2</td></tr>
+            <tr><td class="text-left">LLaVA-Video-7B-Qwen2</td><td>47.7</td><td>49.9</td><td>0.0</td></tr>
+            <tr><td class="text-left">LLaVA-Video-72B-Qwen2</td><td>45.0</td><td>65.6</td><td>15.2</td></tr>
+            <tr class="group-header"><td class="text-left" colspan="4"><em>Fine-tuned</em></td></tr>
+            <tr><td class="text-left"><a href="https://cambrian-mllm.github.io/cambrian-s/" target="_blank" class="link-muted">Cambrian-S-7B</a></td><td>1.1</td><td>2.8</td><td>0.0</td></tr>
+            <tr><td class="text-left"><a href="https://yangr116.github.io/vst_project/" target="_blank" class="link-muted">VST-7B-SFT</a></td><td>1.1</td><td>8.7</td><td>0.4</td></tr>
+            <tr><td class="text-left"><a href="https://github.com/OuyangKun10/SpaceR" target="_blank" class="link-muted">SpaceR-7B (SG-RLVR)</a></td><td>8.1</td><td>24.3</td><td>14.6</td></tr>
+            <tr><td class="text-left"><a href="https://diankun-wu.github.io/Spatial-MLLM/" target="_blank" class="link-muted">Spatial-MLLM-4B-135k</a></td><td>0.2</td><td>0.9</td><td>0.0</td></tr>
+            <tr><td class="text-left"><a href="https://diankun-wu.github.io/Spatial-MLLM/" target="_blank" class="link-muted">Spatial-MLLM-4B-820k</a></td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr><td class="text-left"><a href="https://vlm-3r.github.io/" target="_blank" class="link-muted">VLM3R-7B</a></td><td>4.1</td><td>2.5</td><td>0.2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section id="resources" class="pt-0 pb-16 max-md:pt-0 max-md:pb-12" data-animate>
+    <h2 class="section-title">Resources</h2>
+    <p class="text-[15px] text-muted leading-relaxed mb-6">ReVSI supports the following inference and evaluation frameworks:</p>
+    <div class="grid grid-cols-3 max-md:grid-cols-1 gap-5">
+      <a href="https://github.com/modelscope/ms-swift" target="_blank" class="resource-card">
+        <div class="resource-logo"><img src="static/ms_swift.jpg" alt="ModelScope SWIFT"></div>
+        <div class="resource-meta">
+          <div class="resource-name">ModelScope SWIFT</div>
+          <div class="resource-desc">Scalable lightWeight Infrastructure for Fine-Tuning</div>
+        </div>
+      </a>
+      <a href="https://github.com/EvolvingLMMs-Lab/lmms-eval" target="_blank" class="resource-card">
+        <div class="resource-logo"><img src="static/lmms_eval.jpg" alt="LMMs-Eval"></div>
+        <div class="resource-meta">
+          <div class="resource-name">LMMs-Eval</div>
+          <div class="resource-desc">One-for-All Multimodal Evaluation Toolkit Across Text, Image, Video, and Audio Tasks</div>
+        </div>
+      </a>
+      <a href="https://github.com/open-compass/VLMEvalKit" target="_blank" class="resource-card">
+        <div class="resource-logo"><img src="static/vlmevalkit.png" alt="VLMEvalKit"></div>
+        <div class="resource-meta">
+          <div class="resource-name">VLMEvalKit</div>
+          <div class="resource-desc">A Toolkit for Evaluating Large Vision-Language Models</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Citation -->
+  <section id="citation" class="pt-2 pb-16 max-md:pt-2 max-md:pb-12" data-animate>
+    <h2 class="section-title">Citation</h2>
+    <p class="text-[15px] text-muted leading-relaxed mb-5">If you find this work useful, please consider citing our paper:</p>
+    <div class="citation-block">
+      <button class="copy-btn"><i class="fa-regular fa-clipboard"></i> Copy</button>
+      <pre id="bibtex">@article{zhang2026revsi,
+  title={ReVSI: Rebuilding Visual Spatial Intelligence Evaluation for Accurate Assessment of VLM 3D Reasoning},
+  author={Zhang, Yiming and Chen, Jiacheng and Tan, Jiaqi and Mao, Yongsen and Chen, Wenhu and Chang, Angel X.},
+  journal={arXiv preprint arXiv:2604.24300},
+  year={2026}
+}</pre>
+    </div>
+  </section>
+
+  <!-- Acknowledgment -->
+  <section id="acknowledgment" class="pt-2 pb-32 max-md:pt-2 max-md:pb-24" data-animate>
+    <h2 class="section-title">Acknowledgment</h2>
+    <p class="text-[15px] text-muted leading-relaxed">
+      This work was funded in part by a <a href="https://cifar.ca/" target="_blank" class="link-muted">CIFAR</a> AI Chair and NSERC Discovery Grants, and enabled by support from <a href="https://www.alliancecan.ca/" target="_blank" class="link-muted">Digital Research Alliance of Canada</a> and a CFI/BCKDF JELF grant. We thank <a href="https://sevenljy.github.io/" target="_blank" class="link-muted">Jiayi Liu</a> for help with benchmark data verification and discussion.
+    </p>
+  </section>
+
+</div>
+
+<!-- ════════════════════ Footer ════════════════════ -->
+<footer class="text-center px-5 text-xs text-gray-400">
+</footer>
+
+<!-- Mesh viewer modal -->
+<div id="mesh-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 max-md:p-2 bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Expanded mesh viewer">
+  <div class="relative w-full max-w-6xl max-h-[90vh] aspect-[16/10] max-md:aspect-auto max-md:h-[88vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+    <div class="flex items-center justify-between px-5 py-3 border-b border-border">
+      <div>
+        <div class="text-[15px] font-extrabold tracking-tight text-[#4a4a52]" data-mesh-modal-title>3D Reconstructed Mesh</div>
+        <div class="text-[11px] text-light/80 mt-0.5" data-mesh-modal-subtitle>Drag to rotate · scroll to zoom</div>
+      </div>
+      <button type="button" data-mesh-close class="w-8 h-8 inline-flex items-center justify-center rounded-md text-gray-700 hover:bg-gray-100" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="flex-1 relative bg-[#f8fafa] overflow-hidden" data-mesh-modal-host></div>
+  </div>
+</div>
+
+<!-- Vocab cloud modal -->
+<div id="vocab-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 max-md:p-2 bg-black/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Open vocabulary word cloud">
+  <div class="relative w-full max-w-6xl max-h-[90vh] aspect-[16/10] max-md:aspect-auto max-md:h-[88vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+    <div class="flex items-center justify-between px-5 py-3 border-b border-border">
+      <div>
+        <div class="text-[15px] font-extrabold tracking-tight text-[#4a4a52]">Open Vocabulary Object Labels</div>
+        <div class="text-[11px] text-light/80 mt-0.5">Drag the divider to compare ReVSI's vocabulary against VSI-Bench · hover for counts</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" data-vocab-close class="w-8 h-8 inline-flex items-center justify-center rounded-md text-gray-700 hover:bg-gray-100" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+    <div class="flex-1 relative bg-[#f8fafa] overflow-hidden">
+      <div class="absolute inset-0" data-vocab-split-modal>
+        <div class="absolute inset-0 overflow-hidden" data-vocab-pane-modal="vsi" style="clip-path: inset(0 50% 0 0);">
+          <svg id="vocab-cloud-modal-vsi" class="absolute inset-0 w-full h-full select-none touch-none"></svg>
+        </div>
+        <div class="absolute inset-0 overflow-hidden" data-vocab-pane-modal="revsi" style="clip-path: inset(0 0 0 50%);">
+          <svg id="vocab-cloud-modal" class="absolute inset-0 w-full h-full select-none touch-none"></svg>
+        </div>
+        <div class="split-handle absolute top-0 bottom-0 z-20 -translate-x-1/2 cursor-ew-resize select-none touch-none" data-vocab-handle-modal style="left:50%;width:28px;">
+          <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-white/85 shadow-[0_0_0_1px_rgba(0,0,0,0.25)]"></div>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white shadow-md border border-gray-300 flex items-center justify-center text-gray-600">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 3 12 9 18"></polyline><polyline points="15 6 21 12 15 18"></polyline></svg>
+          </div>
+        </div>
+      </div>
+      <div class="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[12px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2.5 py-1 rounded-md border border-gray-200" data-vocab-tag-modal="vsi" style="clip-path: inset(0 50% 0 0);">
+        <span class="w-2 h-2 rounded-sm" style="background:#cbd5d9"></span>
+        <span class="italic normal-case tracking-normal">VSI-Bench</span>
+        <span class="text-light/80 normal-case tracking-normal">(65 Labels)</span>
+      </div>
+      <div class="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 bg-white/95 text-[12px] font-semibold uppercase tracking-[0.08em] text-gray-700 px-2.5 py-1 rounded-md border border-gray-200" data-vocab-tag-modal="revsi" style="clip-path: inset(0 0 0 50%);">
+        <span class="w-2 h-2 rounded-sm" style="background:#8BBBB4"></span>
+        <span class="italic normal-case tracking-normal">ReVSI</span>
+        <span class="text-light/80 normal-case tracking-normal">(504 Labels)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
