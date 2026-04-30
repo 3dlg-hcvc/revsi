@@ -16,11 +16,13 @@
 <sup>3</sup> University of Waterloo &nbsp;&nbsp;
 <sup>4</sup> Alberta Machine Intelligence Institute (Amii)
 
+<p>ICML 2026</p>
 
 [![Project Page](https://img.shields.io/badge/Project%20Page-84C0B8?style=for-the-badge)](https://3dlg-hcvc.github.io/revsi/)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.24300-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2604.24300)
 [![Visualizer](https://img.shields.io/badge/Visualizer-84C0B8?style=for-the-badge&logo=eye&logoColor=white)](https://revsi.site/)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/datasets/3dlg-hcvc/ReVSI/)
+
   
 This repository contains code for the ReVSI benchmark, introduced in [ReVSI: Rebuilding Visual Spatial Intelligence Evaluation for Accurate Assessment of VLM 3D Reasoning](https://3dlg-hcvc.github.io/revsi/).
 
