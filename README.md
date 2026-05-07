@@ -31,7 +31,7 @@ This repository contains code for the ReVSI benchmark, introduced in [ReVSI: Reb
 > Please avoid using PyTorch 2.9, as a known cuDNN issue can lead to significant performance degradation for QwenVL models (see [details](https://github.com/pytorch/pytorch/issues/166122)).
 
 ReVSI supports inference / evaluation with the following frameworks:
-- [LMMs-Eval](https://github.com/eamonn-zh/lmms-eval)
+- [LMMs-Eval](https://github.com/evolvinglmms-lab/lmms-eval)
   ```bash
   # example 1: evaluate Qwen3-VL-8B-Instruct on ReVSI 64-frame subset (with huggingface transformers backend on 4 GPUs)
   accelerate launch \
@@ -47,6 +47,12 @@ ReVSI supports inference / evaluation with the following frameworks:
   --model vllm \
   --model_args "model=Qwen/Qwen3-VL-8B-Instruct,fps=2" \
   --tasks revsi_all_frame
+
+  # example 3: evaluate Qwen3-VL-8B-Instruct on ReVSI 32-frame subset (with vllm backend)
+  python -m lmms_eval \
+  --model vllm \
+  --model_args "model=Qwen/Qwen3-VL-8B-Instruct,nframes=32" \
+  --tasks revsi_32_frame
   ```
 
 - [VLMEvalKit](https://github.com/eamonn-zh/VLMEvalKit) (inference + evaluation)
