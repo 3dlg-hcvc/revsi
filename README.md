@@ -69,7 +69,7 @@ ReVSI supports inference / evaluation with the following frameworks:
   --model_kwargs '{"fps_min_frames": 64, "fps_max_frames": 64}' \
   --val_dataset 3dlg-hcvc/ReVSI:64_frame \
   --infer_backend transformers \
-  --custom_register_path ./ms_swift_register/revsi_register.py \
+  --external_plugins ./ms_swift_register/revsi_register.py \
   --use_hf true \
   --torch_dtype bfloat16 \
   --attn_impl flash_attention_2 \
