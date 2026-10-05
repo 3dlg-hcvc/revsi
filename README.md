@@ -3,7 +3,7 @@
   <img src="docs/revsi.jpg"/>
 </p>
 
-[Yiming Zhang](https://github.com/eamonn-zh)<sup>1*</sup>,
+[Yiming Zhang](https://eamonn-zh.github.io/)<sup>1*</sup>,
 [Jiacheng Chen](https://jcchen.me/)<sup>1*</sup>,
 [Jiaqi Tan](https://christinatan0704.github.io/mysite/)<sup>1</sup>,
 [Yongsen Mao](https://sammaoys.github.io/)<sup>2</sup>,
@@ -117,10 +117,10 @@ The scripts generate the following question types:
 ## Citation
 If you find ReVSI useful for your research, please consider citing:
 ```bibtex
-@article{zhang2026revsi,
-  title={ReVSI: Rebuilding Visual Spatial Intelligence Evaluation for Accurate Assessment of VLM 3D Reasoning},
-  author={Zhang, Yiming and Chen, Jiacheng and Tan, Jiaqi and Mao, Yongsen and Chen, Wenhu and Chang, Angel X.},
-  journal={arXiv preprint arXiv:2604.24300},
+@inproceedings{zhang2026revsi,
+  title={Revsi: Rebuilding visual spatial intelligence evaluation for accurate assessment of vlm 3d reasoning},
+  author={Zhang, Yiming and Chen, Jiacheng and Tan, Jiaqi and Mao, Yongsen and Chen, Wenhu and Chang, Angel X},
+  booktitle={Forty-third International Conference on Machine Learning},
   year={2026}
 }
 ```
